@@ -1,0 +1,23 @@
+logging:
+  level:
+    root: info
+    '[com.sngular.core]': debug
+    '[com.sngular.product]': debug
+    '[org.springframework.web.reactive.function.client.ExchangeFunctions]': debug
+
+resilience4j:
+  circuitbreaker:
+    log:
+      enable: true
+      excludes: SUCCESS, IGNORED_ERROR, FAILURE_RATE_EXCEEDED
+    configs:
+      default:
+        wait-duration-in-open-state: 10s
+  bulkhead:
+    log:
+      enable: true
+      excludes: CALL_PERMITTED, CALL_FINISHED
+  timelimiter:
+    log:
+      enable: true
+      excludes: SUCCESS

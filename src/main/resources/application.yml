@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: '@project.artifactId@'
+server:
+  port: 5000
+  servlet.context-path: /
+logging:
+  level:
+    root: warn
+    '[com.sngular.product]': info
+    
+app:
+  clients:
+    productLegacy:
+      host: http://localhost:3001
+      endpoint:
+        similarIds: /product/{id}/similarids
+        getProduct: /product/{id}
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        # Open
+        sliding-window-type: count-based
+        sliding-window-size: 20
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 15s
+        # Half Open
+        automatic-transition-from-open-to-half-open-enabled: false
+        permitted-number-of-calls-in-half-open-state: 5
+        max-wait-duration-in-half-open-state: 5s
+        # Slow Call        
+#        slow-call-duration-threshold: 15s
+#        slow-call-rate-threshold: 50
+        # Otros        
+        event-consumer-buffer-size: 10
+        ignore-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
+  retry:
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration: 500
+        event-consumer-buffer-size: 10
+        ignore-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
+  bulkhead:
+    configs:
+      default:
+        max-wait-duration: 5s
+        max-concurrent-calls: 100
+        event-consumer-buffer-size: 10
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 15s
+        cancel-running-future: true
+        event-consumer-buffer-size: 10
+  ratelimiter:
+    configs:
+      default:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10

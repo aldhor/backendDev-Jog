@@ -1,0 +1,12 @@
+logging:
+  level:
+    '[com.sngular.core]': debug
+    '[reactor.netty.http.client.HttpClientConnect]': fatal
+    '[org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler]': off
+    '[org.springframework.web.HttpLogging]': off
+
+resilience4j:
+  circuitbreaker:
+    log:
+      enable: true
+      excludes: SUCCESS, IGNORED_ERROR, FAILURE_RATE_EXCEEDED
