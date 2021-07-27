@@ -23,6 +23,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import com.sngular.core.resilience.Resilence4jDecorator;
 import com.sngular.product.DataHelper;
+import com.sngular.product.controller.impl.ProductApiController;
 import com.sngular.product.model.Product;
 import com.sngular.product.service.ProductLegacyService;
 import com.sngular.product.service.impl.ProductServiceImpl;
@@ -30,9 +31,9 @@ import com.sngular.product.service.impl.ProductServiceImpl;
 import reactor.core.publisher.Mono;
 
 @ExtendWith(SpringExtension.class)
-@WebFluxTest(controllers = ProductController.class)
+@WebFluxTest(controllers = ProductApiController.class)
 @Import({ProductServiceImpl.class})
-class ProductControllerTest {
+class ProductApiControllerTest {
 
   static final String URI = "/product/1/similar";
 

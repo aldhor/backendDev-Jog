@@ -5,16 +5,28 @@ import java.math.BigDecimal;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @lombok.Value
 @lombok.Builder
 @lombok.extern.jackson.Jacksonized
+@ApiModel(description = "Information about Product")
 public class Product {
 
-  @NotEmpty String id;
+  @ApiModelProperty(value = "Unique identifier", required = true, allowEmptyValue = false)
+  @NotEmpty
+  String id;
 
-  @NotEmpty String name;
+  @ApiModelProperty(value = "Name", required = true, allowEmptyValue = false)
+  @NotEmpty
+  String name;
 
-  @NotNull BigDecimal price;
+  @ApiModelProperty(value = "Price", required = true)
+  @NotNull
+  BigDecimal price;
 
-  @NotNull Boolean availability;
+  @ApiModelProperty(value = "availability", required = true)
+  @NotNull
+  Boolean availability;
 }

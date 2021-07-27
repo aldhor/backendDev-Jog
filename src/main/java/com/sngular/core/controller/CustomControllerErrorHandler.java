@@ -75,7 +75,7 @@ public class CustomControllerErrorHandler extends AbstractErrorWebExceptionHandl
       final CallNotPermittedException ex, final Map<String, Object> errorPropertiesMap) {
     final var status = HttpStatus.SERVICE_UNAVAILABLE;
     final var headers = new HttpHeaders();
-    headers.add(HttpHeaders.RETRY_AFTER, "60");
+    headers.add(HttpHeaders.RETRY_AFTER, "20");
     return handleExceptionInternal(ex, null, headers, status, errorPropertiesMap);
   }
 

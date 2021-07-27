@@ -51,7 +51,7 @@ resilience4j:
     configs:
       default:
         max-wait-duration: 5s
-        max-concurrent-calls: 100
+        max-concurrent-calls: 200
         event-consumer-buffer-size: 10
   timelimiter:
     configs:

@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<swagger-annotations.version>1.6.2</swagger-annotations.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,6 +37,12 @@
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-bulkhead</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+        <version>${swagger-annotations.version}</version>
 		</dependency>
 
 		<dependency>
